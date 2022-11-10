@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/alert.css">
+<div class="alert show showAlert">
+    <!-- <i class="fa-solid fa-badge-check"></i> -->
+    <!-- <span class="fas fa-exclamation-circle"></span> -->
+    <span class="icon">
+        <i class='bx bxs-badge-check'></i>
+    </span>
+    <span class="msg">Success: Video has been Downloaded Successfully'</span>
+    <div class="close-btn">
+       <span class="fas fa-times"></span>
+    </div>
+ </div>
+ <script>
+    let alert = document.querySelector('.alert')
+    setTimeout(function(){
+        alert.classList.add('hide')
+        alert.classList.remove('show')
+    }, 5000); // hide automatically after 5 seconds
+
+    let closeButton = document.querySelector('.close-btn')
+    closeButton.addEventListener('click',(e)=>{
+        alert.classList.add('hide')
+        alert.classList.remove('show')
+    })
+
+ </script>

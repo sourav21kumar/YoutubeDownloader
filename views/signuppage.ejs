@@ -1,0 +1,125 @@
+<%- include('./partials/header.ejs') %>
+<link rel="stylesheet" href="/logincss.css" />
+
+<body>
+  
+  <div class="logo-container">
+    <div class="logo-img">
+      <img
+        src="/assets/YouTube Downloader-logos_transparent.png"
+        alt=""
+        srcset=""
+      />
+    </div>
+    <div class="logo-text">
+      <h2 class="logo-text-head">
+        <span>YouTube</span><span> Downloader</span>
+      </h2>
+    </div>
+  </div>
+  <div class="brand-video-container">
+    <div class="video">
+      <video controls autoplay loop>
+        <source src="/assets/Youtube Downloader.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <div class="content">
+    <form action="#">
+      <div class="field">
+        <span class="bx bxs-user"></span>
+        <input type="username" placeholder="Username" id="u" required />
+      </div>
+
+      <div class="username error"></div>
+
+      <div class="field">
+        <span class="bx bxs-envelope"></span>
+        <input type="email" placeholder="Email" id="e" required />
+      </div>
+
+      <div class="email error"></div>
+
+      <div class="field">
+        <span class="bx bxs-lock-alt"></span>
+        <input type="password" placeholder="Password" id="p" required />
+      </div>
+
+      <div class="password error"></div>
+      <button id="signupbtn">Sign Up</button>
+
+      <h4>or Sign Up with social platforms</h4>
+
+      <div class="social_icon">
+        <i class="bx bxl-google-plus" id="google"></i>
+        <i class="bx bxl-facebook" id="facebook"></i>
+      </div>
+
+      <div class="foot">
+        <a>Already have an account?</a>
+        <a class="in" href="/auth/login">Sign In</a>
+      </div>
+    </form>
+  </div>
+  <script src="/logoRedirect.js"></script>
+  <script>
+    const signupbtn = document.getElementById("signupbtn");
+
+    const usernameError = document.querySelector(".username");
+    const emailError = document.querySelector(".email");
+    const passwordError = document.querySelector(".password");
+
+    signupbtn.addEventListener("click", async (event) => {
+      event.preventDefault();
+      let userDetails = {
+        username: "",
+        email: "",
+        password: "",
+      };
+      userDetails.username = document.getElementById("u").value; // username
+      userDetails.email = document.getElementById("e").value; // email
+      userDetails.password = document.getElementById("p").value; // password
+      console.log(userDetails);
+
+      try {
+        const res = await fetch("/auth/signup", {
+          method: "POST",
+          body: JSON.stringify(userDetails),
+          headers: { "Content-Type": "application/json" },
+        });
+        const signup_response = await res.json();
+        // console.log(signup_response)
+        //  Handlling the Data Coming from the Database when a new user is saved
+        if (signup_response.UserID) {
+          console.log(signup_response.UserID);
+          // UserID is the foreign key that we will use to render the videodetails of the user in the DASHBOARD
+          // localStorage.setItem('UserId', signup_response.UserID)
+          location.assign('/')
+        }
+
+        // Handling For UserSchema Errors
+        if (signup_response.errors) {
+          if (signup_response.errors.username) {
+            usernameError.style.visibility = "visible";
+          }
+          if (signup_response.errors.email) {
+            emailError.style.visibility = "visible";
+          }
+          if (signup_response.errors.password) {
+            passwordError.style.visibility = "visible";
+          }
+
+          usernameError.textContent = signup_response.errors.username;
+          emailError.textContent = signup_response.errors.email;
+          passwordError.textContent = signup_response.errors.password;
+        }
+
+        // if(signup_response.errors)
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+  <script src="/oauthRedirect.js"></script>
+</body>

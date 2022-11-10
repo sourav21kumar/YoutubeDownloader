@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fjalla+One&family=Francois+One&family=Oswald:wght@700&family=Readex+Pro:wght@600&family=Righteous&family=Rubik+Distressed&family=Source+Code+Pro:ital,wght@0,900;1,900&display=swap');
+
+/**------Background-white-----------**/
+:root {
+
+  --bg1: #e8eaec;
+  --text-color: #979797;
+  --color: #000;
+  --tcolor: rgb(119 119 119);
+
+  --boxShadow:
+    7px 7px 15px #45566754,
+    -8px -8px 15px rgb(81 101 121 / 4%),
+    inset -5px -4px 13px 0px rgb(81 101 121 / 35%),
+    inset 6px 7px 12px 0px rgb(255 255 255 / 94%);
+
+  --boxShadow2:
+    inset 4px 4px 8px rgb(189 200 213),
+    inset -4px -4px 8px rgb(255 255 255);
+
+  --boxShadow3:
+    4px 4px 8px rgb(189 200 213),
+    -4px -4px 8px rgb(255 255 255);
+
+  --sbShadow:
+    5px 5px 7px rgb(0 0 0 / 25%),
+    inset 2px 2px 5px rgb(255 255 255 / 25%),
+    inset -3px -3px 5px rgb(0 0 0 / 12%);
+
+  --scishadow:
+    linear-gradient(to bottom, #e8eaec, rgba(189, 200, 213, 0.795));
+  --scitextshadow:
+    2px 2px 3px #b8b9be,
+    -2px -2px 3px #fff;
+
+
+}
+
+/**------Background-Dark-----------**/
+body.dark {
+
+  --bg1: #2f363e;
+  --text-color: rgb(255, 208, 0);
+  --color: #FFF;
+  --tcolor: rgb(243, 243, 243);
+
+  --boxShadow:
+    5px 5px 15px rgba(0, 0, 0, 0.25),
+    5px 15px 15px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+
+  --boxShadow2:
+    inset -3px -3px 6px rgb(73, 78, 83),
+    inset 3px 3px 6px rgb(32, 28, 28);
+
+  --boxShadow3:
+    -3px -3px 6px rgb(73, 78, 83),
+    3px 3px 6px rgb(32, 28, 28);
+
+  --sbShadow:
+    5px 5px 7px rgb(0 0 0 / 25%),
+    inset 2px 2px 5px rgb(255 255 255 / 25%),
+    inset -3px -3px 5px rgb(0 0 0 / 50%);
+
+
+  --scishadow:
+    linear-gradient(to bottom, #2f363e, rgb(73, 78, 83));
+
+  --scitextshadow:
+    -2px -2px 3px #a1a1a160,
+    2px 2px 3px #22272c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--bg1);
+  overflow-y: scroll;
+}
+
+.video-items-container{
+    position: relative;
+    /* border: 2px solid black; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
+}
+
+.items{
+    /* border: 2px solid red; */
+    position: relative;
+    display: flex;
+    width: 75%;
+    flex-direction: row;
+    align-items: center;
+    height: 226px;
+    background: var(--bg1);
+    /* box-shadow: var(--boxShadow3); */
+    /* box-shadow: var(--boxShadow2); */
+    box-shadow: var(--boxShadow);
+    margin: auto;
+    margin-bottom: 22px;
+    border-radius: 23px;
+    cursor: pointer;
+    justify-content: space-around;
+}
+
+.items:hover{
+    box-shadow: var(--boxShadow2);
+}
+
+.embed-link{
+    position: relative;
+    width: 39%;
+    border-radius: 12px;
+    height: 204px;
+    /* border: 2px solid green; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 13px;
+}
+.embed-link:hover{
+    box-shadow: var(--boxShadow3);
+}
+.embed-link > iframe{
+    position: relative;
+    /* height: inherit; */
+    height: 197px;
+    width: 436px;
+    border-radius: 16px;
+    border: 0.5px solid #bc1ea7;
+}
+
+.yt-video-title{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 582px;
+  height:98px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  justify-content: space-evenly;
+}
+
+.heading{
+  margin-right: 5px;
+  color: red;
+}
+
+.span-placeholder{
+  color: rgba(198, 40, 90, 0.934);
+  float: left;
+  font-family: 'Rubik Distressed', cursive;
+  letter-spacing: 1px !important;
+}
+.span-meta{
+  display: table-cell;
+  text-align: left;
+  padding-left: 15px;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.navbar{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  /* border: 2px solid red; */
+  width: 42%;
+  height: 56px;
+  margin-left: 50%;
+  margin-top: 10px;
+ 
+}
+.userLogo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* border: 2px solid black; */
+  border-radius: 50%;
+  height: 48px;
+  width: 56px;
+  box-shadow: var(--boxShadow3);
+  cursor: pointer;
+}
+.userID{
+  position: absolute;
+  /* border: 2px solid black; */
+  width: max-content;
+  height: 29px;
+  margin-right: 79px;
+  color: var(--text-color);
+  font-family: 'Rubik Distressed', cursive;
+  letter-spacing: 1px;
+}
+.userLogo span{
+  font-size: 39px;
+  color: var(--text-color);
+}
+
+.message{
+  display: none;
+  visibility: hidden;
+}

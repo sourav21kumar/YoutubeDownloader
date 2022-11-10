@@ -1,0 +1,81 @@
+<%- include('./partials/header.ejs') %> 
+<link rel="stylesheet" href="/style.css">
+<%- include('./partials/navbar.ejs') %> 
+<%- include('./partials/preloader.ejs') %> 
+<%- include('./partials/alert.ejs') %> 
+<body>
+  
+  <div class="content">
+    <!-- <iframe src="https://www.youtube.com/embed/oxMdDsud5vg" frameborder="0"></iframe>
+      <div class="text">Sign Up</div>
+       -->
+    <form action="#">
+      <div class="field">
+        <span class="bx bxl-youtube" style="color: red !important;"></span>
+        <!-- <i class='bx bx-x' id="cross" ></i> -->
+        <input type="YouTube Link" id="inp" placeholder="YouTube" required>
+      </div>
+
+      <div class="embed">
+        <div class="iframeInfo">
+          <iframe src="" frameborder="0"></iframe>
+        </div>
+      </div>
+      <!-- <div class="field">
+            <span class="bx bxs-envelope"></span>
+            <input type="email" placeholder="Email" required>
+          </div>
+
+        <div class="field">
+            <span class="bx bxs-lock-alt"></span>
+            <input type="password" placeholder="Password" required>
+        </div> -->
+
+      <button id="btn" class="bx bx-search" style="font-size: 21px; font-weight:800 !important; "></button>
+      <div class="rescontainer">
+
+        <ul class="dropdown" id="d">
+          <input type="text" value="Highest Quality" readonly="" id="v">
+          <span class="bx bxs-magic-wand" style="position: absolute; left: 27px; top: 19px; font-size: 21px; color: red;"></span>
+          <!-- <i class='bx bxs-magic-wand'></i> -->
+          <i class='bx bxs-chevron-down'></i>
+          <ul class="options" id="o">
+            <li resolution="Highest Quality">Highest Quality</li>
+            <li resolution="Lowest Quality">Lowest Quality</li>
+            <li resolution="audio-Only">audio-Only</li>
+          </ul>
+        </ul>
+        <button id="download">Download <i class='bx bxs-chevrons-right bx-tada' style="color: red;"></i></button>
+      </div>
+      
+
+    </form>
+
+    <%- include('./partials/darkmode.ejs') %> 
+  </div>
+
+  <script src="/index.js"></script>
+  <script>
+ 
+
+    // Show the options on clicking the options menu
+    var dropdown = document.getElementById('d')
+    var options = document.getElementById('o')
+    var input = document.getElementById('v')
+
+    dropdown.addEventListener('click', function () {
+      this.classList.toggle('show')
+    })
+    options.addEventListener('click', function (event) {
+      const listItem = event.target
+      const value = listItem.attributes.resolution.value
+      input.value = value
+    })
+    
+    
+
+
+  </script>
+</body>
+
+</html>

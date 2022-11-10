@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/style.css">
+<nav class="navbar">
+
+    <div class="userID">Welcome, <%= user_email.email %>
+    </div>
+    <div class="userLogo" id="userDash">
+        <!-- <span class="bx bxs-user-circle" ></span> -->
+        <span class="bx bx-user"></span>
+        <ul class="options" id="ud" style="width: 152px">
+            <li items="Dashboard">Dashboard</li>
+            <li items="Log out">Log out</li>
+        </ul>
+    </div>
+</nav>
+
+<script defer>
+    var userDash = document.getElementById("userDash");
+    var dashOption = document.getElementById("ud");
+
+    userDash.addEventListener("click", function () {
+        console.log('User logo Clicked...')
+        this.classList.toggle("show");
+    });
+
+    dashOption.addEventListener("click", async (event) => {
+        console.log('Dashboard option list Clicked...')
+        const optionSelected = event.target;
+        console.log(optionSelected)
+        const value = optionSelected.attributes.items.value;
+        // Dashboard
+        if (value === "Dashboard") {
+            // location.assign(`/application/${value}`);
+            location.assign('/application/Dashboard');
+        }
+        // Log out
+        if(value === "Log out"){
+            location.assign('/auth/logout')
+        }
+    });
+</script>
