@@ -53,7 +53,7 @@ class SocketService {
     }
 
     getEmbedUrl(url, eventType) {
-        const child = spawn('python', ['text.py', `${url}`, `${eventType}`])
+        const child = spawn('python', ['main.py', `${url}`, `${eventType}`])
         child.stdout.on('data', (data) => {
             console.log(data.toString())
             this.vidDetails.embedURL = data.toString()   //UPDATE THE EMBED URL

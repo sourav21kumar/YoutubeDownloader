@@ -159,6 +159,8 @@ body {
   width: 100%;
   padding-left: 50px;
   font-size: 18px;
+  font-family: 'Rubik Distressed', cursive;
+  letter-spacing: 0.07rem;
   outline: none !important;
   border: none;
   background: var(--bg1);

@@ -39,6 +39,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+const port = process.env.PORT || 3000
 // const child = spawn('python',['text.py','https://www.youtube.com/watch?v=5mATk1O45LI']) 
 // // const child = spawn('ls')
 // child.stdout.on('data',(data)=>{
@@ -61,17 +62,11 @@ app.get('*', checkUser)
 app.get('/',authenticationChecker,(req,res)=>{
     res.render('index')
 })
-app.get('/do', (req,res)=>{
-    let url = 'https://ytdownloadervideodetails.s3.amazonaws.com/test?AWSAccessKeyId=AKIAUOR2VNBARTYV36TJ&Signature=cr90iZ%2FN0nx1Pbs687mjakOWeBA%3D&Expires=1665752218'
-    http.get(url, function(response){
-        console.log(response)
-    })
-    
-})
+
 // app.get('/signup',(req,res)=>{
 //     res.render('signuppage')
 // })
-server.listen(3000,()=>{
+server.listen(port,()=>{
     console.log(`Server Listening at Port 3000...`)
     socketService = new SocketService()
     socketService.attachServer(server)

@@ -211,56 +211,56 @@ module.exports.downloads = async (req, res) => {
                     fileStream.on('error', function (err) {
                         console.log('File Error', err)
                     })
-                    s3.upload(uploadParams, function (err, data) {
+                    s3.upload(uploadParams, async(err, data)=>{
                         if (err) {
                             console.log("Error", err);
                         } if (data) {
                             console.log("Upload Success", data);
+                            const user = await vidschema.findOne({ email: decodedToken.email_id })
+                            if (user) {
+                                // console.log(user)
+
+                                let videoList = user.downloads
+                                // If exist then update the downloads field
+                                videoList.push({ title: title, quality: resolution, embedURL: embedURL })
+                                try {
+                                    await vidschema.updateOne({ userID: decodedToken.id }, {
+                                        $set: {
+                                            downloads: videoList
+                                        }
+                                    })
+                                    // res.status(201).json({ message: 'Modified Successfully...' })
+                                    try {
+                                        res.status(201).json({ filename: filename })
+                                    } catch (error) {
+                                        console.log((error))
+                                        res.status(500).json({ message: 'Internal Server Error' })
+                                    }
+                                } catch (error) {
+                                    console.log(error)
+                                    res.status(500).json({ message: 'Internal Server Error' })
+                                }
+
+                            }
+                            else {
+                                console.log('User Not Found... So creating a new one...')
+                                try {
+                                    const newuserdata = await vidschema.create({
+                                        userID: decodedToken.id,
+                                        email: decodedToken.email_id,
+                                        downloads: [{ title: title, quality: resolution, embedURL: embedURL }]
+                                    })
+                                    // console.log(newuserdata)
+                                    res.status(201).json({ filename: filename })
+
+
+                                } catch (error) {
+                                    console.log(error)
+                                    res.status(500).json({ message: 'Internal Server Error...' })
+                                }
+                            }
                         }
                     });
-                    const user = await vidschema.findOne({ email: decodedToken.email_id })
-                    if (user) {
-                        // console.log(user)
-
-                        let videoList = user.downloads
-                        // If exist then update the downloads field
-                        videoList.push({ title: title, quality: resolution, embedURL: embedURL })
-                        try {
-                            await vidschema.updateOne({ userID: decodedToken.id }, {
-                                $set: {
-                                    downloads: videoList
-                                }
-                            })
-                            // res.status(201).json({ message: 'Modified Successfully...' })
-                            try {
-                                res.status(201).json({ filename:filename})
-                            } catch (error) {
-                                console.log((error))
-                                res.status(500).json({ message: 'Internal Server Error' })
-                            }
-                        } catch (error) {
-                            console.log(error)
-                            res.status(500).json({ message: 'Internal Server Error' })
-                        }
-
-                    }
-                    else {
-                        console.log('User Not Found... So creating a new one...')
-                        try {
-                            const newuserdata = await vidschema.create({
-                                userID: decodedToken.id,
-                                email: decodedToken.email_id,
-                                downloads: [{ title: title, quality: resolution, embedURL: embedURL }]
-                            })
-                            // console.log(newuserdata)
-                            res.status(201).json({ filename:filename})
-                           
-                            
-                        } catch (error) {
-                            console.log(error)
-                            res.status(500).json({ message: 'Internal Server Error...' })
-                        }
-                    }
                 } catch (error) {
                     console.log(error)
                     res.status(500).json({ message: "Internal Server Error..." })
@@ -311,7 +311,7 @@ module.exports.dashboardVideoList = async (req, res) => {
                     if (userDownloadList) {
                         res.status(201).json({ downloadList: userDownloadList.downloads })
                     }
-                    else{
+                    else {
                         res.status(201).json({ message: 'Empty List...' })
                     }
                 } catch (error) {

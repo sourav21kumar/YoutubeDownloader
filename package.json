@@ -1,5 +1,5 @@
 {
-  "name": "demo",
+  "name": "YouTube Downloader",
   "version": "1.0.0",
   "description": "YouTube Video Downloader",
   "main": "index.js",
