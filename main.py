@@ -1,7 +1,6 @@
 import sys
 import os
 from pytube import YouTube
-import boto3
 from dotenv import dotenv_values
 # This will load the environment variables from the .env file in the root directory
 config = dotenv_values(".env")
