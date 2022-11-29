@@ -67,7 +67,7 @@ app.get('/',authenticationChecker,(req,res)=>{
 //     res.render('signuppage')
 // })
 server.listen(port,()=>{
-    console.log(`Server Listening at Port 3000...`)
+    console.log(`Server Listening at Port ${port}...`)
     socketService = new SocketService()
     socketService.attachServer(server)
 })
