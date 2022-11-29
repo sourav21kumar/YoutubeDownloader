@@ -45,12 +45,12 @@ def downloadFile(resolution, id):
     # print(yt.thumbnail_url)
     return
 
+if __name__ == "__main__":
+    # Get the video embed url 
+    if sys.argv[2] == 'Embed Url':
+        getEmbedUrl()
 
-# Get the video embed url 
-if sys.argv[2] == 'Embed Url':
-    getEmbedUrl()
-
-#   Download the video
-if sys.argv[2] == 'Download':
-    downloadFile(sys.argv[3], sys.argv[4])  # Passing The Resolution of the Video
+    #   Download the video
+    if sys.argv[2] == 'Download':
+        downloadFile(sys.argv[3], sys.argv[4])  # Passing The Resolution of the Video
 
