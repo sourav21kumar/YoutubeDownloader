@@ -6,12 +6,8 @@ from dotenv import dotenv_values
 config = dotenv_values(".env")
 
 
-# TO BE IMPLEMENTED  -------- LOADING FEATURE (LODER)
-def on_progress(stream, chunk, bytes_remaining):
-    progress_string = f'{round(100 - bytes_remaining/stream.filesize*100,2)}'
-    print(progress_string)
 
-yt = YouTube(sys.argv[1],on_progress_callback=on_progress)
+yt = YouTube(sys.argv[1])
 def getEmbedUrl():
     yt = YouTube(sys.argv[1])
     # print('Ready to get Embed Url')
@@ -45,12 +41,13 @@ def downloadFile(resolution, id):
     # print(yt.thumbnail_url)
     return
 
-if __name__ == "__main__":
+
+
     # Get the video embed url 
-    if sys.argv[2] == 'Embed Url':
+if sys.argv[2] == 'Embed Url':
         getEmbedUrl()
 
     #   Download the video
-    if sys.argv[2] == 'Download':
+if sys.argv[2] == 'Download':
         downloadFile(sys.argv[3], sys.argv[4])  # Passing The Resolution of the Video
 
