@@ -53,6 +53,7 @@ class SocketService {
     }
 
     getEmbedUrl(url, eventType) {
+        cosnole.log(__dirname)
         const child = spawn('python', ['main.py', `${url}`, `${eventType}`])
         child.stdout.on('data', (data) => {
             console.log(data.toString())
