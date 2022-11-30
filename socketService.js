@@ -74,7 +74,7 @@ class SocketService {
 
     scriptDownload(url, eventType, resolution, _id) {
 
-        const download = spawn('python', ['text.py', `${url}`, `${eventType}`, `${resolution}`, `${_id}`])
+        const download = spawn('python', ['main.py', `${url}`, `${eventType}`, `${resolution}`, `${_id}`])
         download.stdout.on('data', (data) => {
             console.log(data.toString())
             this.vidDetails.title = data.toString()  // UPDATE THE VIDEO TITLE
