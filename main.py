@@ -26,15 +26,15 @@ def downloadFile(resolution, id):
     pathname = os.path.dirname(os.path.abspath(__file__))
     if resolution == 'Highest Quality':
         highest_stream = yt.streams.get_highest_resolution()
-        highest_stream.download(output_path=fr'{pathname}\temp', filename= f'{id}.mp4') 
+        highest_stream.download(output_path=fr'{pathname}/temp', filename= f'{id}.mp4') 
 
     elif resolution == 'Lowest Quality':
         lowest_stream = yt.streams.get_lowest_resolution()
-        lowest_stream.download(output_path=fr'{pathname}\temp', filename= f'{id}.mp4') 
+        lowest_stream.download(output_path=fr'{pathname}/temp', filename= f'{id}.mp4') 
 
     else:
         audio_stream = yt.streams.get_audio_only()
-        audio_stream.download(output_path=fr'{pathname}\temp', filename= f'{id}.mp3') 
+        audio_stream.download(output_path=fr'{pathname}/temp', filename= f'{id}.mp3') 
     # stream.download(r'C:\Users\sourav\Downloads')
     # print(f'Youtube Video with {yt.title} downloaded Successfully')
     print(yt.title)

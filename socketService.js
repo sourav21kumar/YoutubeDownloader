@@ -53,7 +53,7 @@ class SocketService {
     }
 
     getEmbedUrl(url, eventType) {
-        console.log(__dirname)
+        
         const child = spawn('python', ['main.py', `${url}`, `${eventType}`])
         child.stdout.on('data', (data) => {
             console.log(data.toString())
@@ -77,6 +77,7 @@ class SocketService {
         try{
             if(!fs.existsSync(path.join(__dirname,'temp')))
             {
+                console.log('Directory not present so creating a new dir...') // heroku deployment debugging
                 fs.mkdirSync(path.join(__dirname,'temp'))
             }
         }catch(error){
