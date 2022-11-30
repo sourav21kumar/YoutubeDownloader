@@ -73,7 +73,14 @@ class SocketService {
     }
 
     scriptDownload(url, eventType, resolution, _id) {
-
+        try{
+            if(!fs.existsSync(path.join(__dirname,'temp')))
+            {
+                fs.mkdirSync(path.join(__dirname,'temp'))
+            }
+        }catch(error){
+            console.log(error)
+        }
         const download = spawn('python', ['main.py', `${url}`, `${eventType}`, `${resolution}`, `${_id}`])
         download.stdout.on('data', (data) => {
             console.log(data.toString())
